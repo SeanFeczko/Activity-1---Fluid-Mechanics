@@ -1,0 +1,33 @@
+clear; clc; close all;
+
+% DATA
+tempC   = [0, 4, 4.4, 10, 15.6, 21, 26.7, 32.2, 37.8, 48.9, 60, 71.1, 82.2, 93.3, 100];
+densCGS = [0.99987, 1.00000, 0.99999, 0.99975, 0.99907, 0.99802, 0.99669, ...
+           0.99510, 0.99318, 0.98870, 0.98338, 0.97729, 0.97056, 0.96333, 0.95865];
+ 
+% Converting to SI
+tempK  = tempC + 273.15;
+densSI = densCGS * 1000;
+
+% Converting to BG units 
+tempF  = tempC * 9/5 + 32;
+densBG = densCGS * 62.428;
+ 
+% Plotting SI 
+figure('Name','SI Units','Position',[100 100 600 450]);
+plot(tempK, densSI, 'o-', 'LineWidth', 1.5, 'Color', [0 0.4470 0.7410]);
+xlabel('Temperature (K)');
+ylabel('Density (kg/m^3)');
+title('Density of Water vs Temperature - SI Units');
+grid on;
+saveas(gcf, 'density_SI.png');
+ 
+% Plotting BG 
+figure('Name','BG Units','Position',[750 100 600 450]);
+plot(tempF, densBG, 'o-', 'LineWidth', 1.5, 'Color', [0.8500 0.3250 0.0980]);
+xlabel('Temperature (^oF)');
+ylabel('Density (lbf/ft^3)');
+title('Density of Water vs Temperature - British Gravitational Units');
+grid on;
+saveas(gcf, 'density_BG.png');
+ 
